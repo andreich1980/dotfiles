@@ -36,6 +36,8 @@ vim.opt.clipboard = 'unnamedplus' -- use system clipboard
 
 vim.opt.confirm = true
 
+vim.opt.signcolumn = 'yes:1'
+
 vim.opt.undofile = true -- persistent undo
 vim.opt.backup = true -- create a backup
 vim.opt.backupdir:remove('.') -- keep backups out of the current dir
