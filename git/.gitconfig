@@ -1,0 +1,26 @@
+[init]
+    defaultBranch = main
+
+[core]
+    editor = nvim
+
+[fetch]
+    prune = true
+
+[help]
+    autocorrect = 10
+
+[color]
+    ui = auto
+
+[delta]
+    line-numbers = true
+    syntax-theme = Dracula
+    plus-style = "syntax #2A363B"
+    plus-emph-style = "syntax #2D4E45"
+    minus-style = "syntax #3B2C37"
+    minus-emph-style = "syntax #613038"
+
+[alias]
+    wip = !git add --all && git commit -m \"WIP\"
+    nah = git wip reset --hard && git clean -df

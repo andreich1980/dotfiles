@@ -2,7 +2,9 @@
 
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# nvim
 rm -rf $HOME/.config/nvim
 ln -s $DOTFILES/nvim $HOME/.config/nvim
 
-
+# Git
+ln -sf $DOTFILES/git/.gitconfig $HOME/.gitconfig
