@@ -1,0 +1,30 @@
+# custom settings: theme, plugins, aliases
+ZSH_THEME="avit"
+
+# update automatically without asking
+zstyle ':omz:update' mode auto
+
+COMPLETION_WAITING_DOTS="true"
+
+plugins=(
+    git
+    docker
+    docker-compose
+    laravel
+    npm
+    cp
+    zsh-autosuggestions
+)
+
+alias a="php artisan"
+alias d="docker"
+alias dc="docker compose"
+
+alias wip='git commit -m "wip"'
+nah() {
+    git reset --hard
+
+    if [[ $1 == "-f" ]]; then
+        git clean -df
+    fi
+}

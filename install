@@ -6,5 +6,15 @@ DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # rm -rf $HOME/.config/nvim
 # ln -s $DOTFILES/nvim $HOME/.config/nvim
 
+# Zsh
+CONFIG_FILE="$HOME/.zshrc"
+CUSTOM_CONFIG="$HOME/.zshrc_local"
+
+ln -sf $DOTFILES/zsh/.zshrc_local $CUSTOM_CONFIG
+
+if ! grep -Fxq "source $CUSTOM_CONFIG" "$CONFIG_FILE"; then
+    echo -e "source $CUSTOM_CONFIG\n" >> "$CONFIG_FILE"
+fi
+
 # Git
 ln -sf $DOTFILES/git/.gitconfig $HOME/.gitconfig
