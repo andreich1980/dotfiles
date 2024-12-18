@@ -22,7 +22,7 @@ alias a="php artisan"
 alias d="docker"
 alias dc="docker compose"
 
-alias wip='git commit -m "wip"'
+alias wip='!git add --all && git commit -m "WIP"'
 nah() {
     git reset --hard
 
