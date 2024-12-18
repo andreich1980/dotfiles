@@ -16,6 +16,8 @@ plugins=(
     zsh-autosuggestions
 )
 
+alias vim="nvim"
+
 alias a="php artisan"
 alias d="docker"
 alias dc="docker compose"
