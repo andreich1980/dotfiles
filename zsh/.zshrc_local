@@ -16,11 +16,7 @@ plugins=(
     zsh-autosuggestions
 )
 
-alias vim="nvim"
-
 alias a="php artisan"
-alias d="docker"
-alias dc="docker compose"
 
 alias wip='!git add --all && git commit -m "WIP"'
 nah() {

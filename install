@@ -2,10 +2,6 @@
 
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# nvim
-# rm -rf $HOME/.config/nvim
-# ln -s $DOTFILES/nvim $HOME/.config/nvim
-
 # Zsh
 CONFIG_FILE="$HOME/.zshrc"
 CUSTOM_CONFIG="$HOME/.zshrc_local"
@@ -18,3 +14,7 @@ fi
 
 # Git
 ln -sf $DOTFILES/git/.gitconfig $HOME/.gitconfig
+
+# vim
+rm -f $HOME/.vimrc
+ln -s $DOTFILES/vim/.vimrc $HOME/.vimrc
