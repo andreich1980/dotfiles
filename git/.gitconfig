@@ -3,7 +3,7 @@
     nah = git wip reset --hard && git clean -df
 
 [core]
-    editor = nvim
+	editor = vim
 
 [color]
     ui = auto
@@ -27,3 +27,5 @@
 
 [init]
     defaultBranch = main
+[http]
+	version = HTTP/1.1
