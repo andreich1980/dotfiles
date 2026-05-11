@@ -1,0 +1,14 @@
+{
+  "workflow": {
+    "granularity": "coarse",
+    "git_tracking": true,
+    "research_before_planning": true,
+    "verify_plans": true,
+    "verify_work": true
+  },
+  "project": {
+    "name": "Dotfiles Management Improvement",
+    "code": "DOT",
+    "mode": "mvp"
+  }
+}
