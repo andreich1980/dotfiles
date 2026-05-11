@@ -7,7 +7,7 @@
 ## Phases
 
 - [x] **Phase 1: Engine & Git Module** - Core script logic and first tool implementation.
-- [ ] **Phase 2: Vim Module** - Adding Vim configuration support.
+- [x] **Phase 2: Vim Module** - Adding Vim configuration support. (completed 2026-05-11)
 - [ ] **Phase 3: Fish & Environment** - Fish support and environment-specific overrides.
 
 ## Phase Details
@@ -35,7 +35,7 @@
   3. Existing Vim configurations are safely backed up before linking.
   4. Vim persistent state (undo, backup, swap) is centralized in `~/.vim/`.
 **Plans**: 
-- [ ] 02-01-PLAN.md — Implement Vim module and shared configuration.
+- [x] 02-01-PLAN.md — Implement Vim module and shared configuration.
 
 ### Phase 3: Fish & Environment
 **Goal**: Implement Fish support and handle machine-specific environment configurations.
@@ -63,6 +63,6 @@
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Engine & Git Module | 2/2 | Completed | 2026-05-11 |
-| 2. Vim Module | 0/1 | In Progress | - |
+| 2. Vim Module | 1/1 | Complete   | 2026-05-11 |
 | 3. Zsh & Environment | 0/0 | Not started | - |
 | 4. Documentation | 0/0 | Not started | - |

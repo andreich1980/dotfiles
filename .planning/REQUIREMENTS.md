@@ -19,7 +19,7 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Tool Modules
 
 - [x] **MOD-01**: Git configuration module (wires up `git/.gitconfig` via `[include]` in `~/.gitconfig`).
-- [ ] **MOD-02**: Vim configuration module (links `.vimrc`).
+- [x] **MOD-02**: Vim configuration module (links `.vimrc`).
 - [ ] **MOD-03**: Fish configuration module (links `config.fish` and handles local overrides).
 
 ### Environment & Integration
@@ -60,7 +60,7 @@ Deferred to future release. Tracked but not in current roadmap.
 | ENG-04 | Phase 1 | Pending |
 | ENG-05 | Phase 1 | Complete |
 | MOD-01 | Phase 1 | Complete |
-| MOD-02 | Phase 2 | Pending |
+| MOD-02 | Phase 2 | Complete |
 | MOD-03 | Phase 3 | Pending |
 | ENV-01 | Phase 3 | Pending |
 | ENV-02 | Phase 3 | Pending |
