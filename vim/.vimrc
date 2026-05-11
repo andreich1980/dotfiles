@@ -32,8 +32,10 @@ set wildmode=longest:full,full
 set spell
 set confirm
 set undofile
+set undodir=~/.vim/undo//
 set backup
-set backupdir-=.
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
 
 " --- Mappings ---
 let mapleader = " "
