@@ -16,7 +16,7 @@ run mkdir -p "$FISH_CONFIG_DIR"
 backup_file "$FISH_CONFIG_MAIN"
 
 # 3. Link shared config
-safe_link "$DOTFILES_DIR/fish/config.fish" "$FISH_CONFIG_SHARED"
+safe_link "$DOTFILES_DIR/modules/fish/config.fish" "$FISH_CONFIG_SHARED"
 
 # 3. Build bootstrapper in config.fish
 # We want to source shared first, then local for overrides

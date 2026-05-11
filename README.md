@@ -46,12 +46,12 @@ sudo apt install -y git vim fish curl xdg-utils speedtest-cli build-essential
 ⚙️ Configuring Fish...
   [DRY-RUN] mkdir -p /home/user/.config/fish
   💾 Backing up /home/user/.config/fish/config.fish to /home/user/.config/fish/config.fish.backup
-  🔗 Linking /home/user/dotfiles/fish/config.fish to /home/user/.config/fish/config_shared.fish
+  🔗 Linking /home/user/dotfiles/modules/fish/config.fish to /home/user/.config/fish/config_shared.fish
 
 📦 Applying module: GIT
 ⚙️ Configuring Git...
   💾 Backing up /home/user/.gitconfig to /home/user/.gitconfig.backup
-  🔗 Linking /home/user/dotfiles/git/.gitconfig to /home/user/.gitconfig_shared
+  🔗 Linking /home/user/dotfiles/modules/git/.gitconfig to /home/user/.gitconfig_shared
 
 ...
 
@@ -91,7 +91,7 @@ Similarly, `~/.vimrc` sources `~/.vimrc_shared`. Add local plugins or settings t
 ## Maintenance
 
 ### Adding New Modules
-Create a new script in `modules/` and place the corresponding configuration files in a dedicated folder. The `install` script will automatically pick up any `.sh` file in the `modules/` directory.
+Create a new directory in `modules/` (e.g., `modules/kitty/`) and add an `install.sh` script along with your configuration files. The `install` engine automatically finds and executes any `install.sh` script within the subdirectories of `modules/`.
 
 ### Verification
 Run the integration test suite to ensure everything is linked correctly:
@@ -101,8 +101,9 @@ Run the integration test suite to ensure everything is linked correctly:
 ```
 
 ## Project Structure
+
 - `install`: The main installation engine.
 - `lib/core.sh`: Core primitives for safe file operations.
-- `modules/`: Individual tool installation scripts.
-- `fish/`, `git/`, `vim/`: Tool-specific configuration files.
-- `tests/`: Verification scripts.
+- `modules/`: Contains encapsulated "Feature Folders" for each tool.
+  - `git/`, `vim/`, `fish/`: Each contains an `install.sh` and its dotfiles.
+- `tests/`: Automated verification suite.

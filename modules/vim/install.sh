@@ -12,13 +12,13 @@ IDEAVIMRC="$HOME_DIR/.ideavimrc"
 backup_file "$VIMRC_MAIN"
 
 # 2. Link our shared config
-safe_link "$DOTFILES_DIR/vim/.vimrc" "$VIMRC_SHARED"
+safe_link "$DOTFILES_DIR/modules/vim/.vimrc" "$VIMRC_SHARED"
 
 # 3. Include shared config in main .vimrc
 include_line "source ~/.vimrc_shared" "$VIMRC_MAIN"
 
 # 4. Link IdeaVim config
-safe_link "$DOTFILES_DIR/vim/.ideavimrc" "$IDEAVIMRC"
+safe_link "$DOTFILES_DIR/modules/vim/.ideavimrc" "$IDEAVIMRC"
 
 # 5. Create state directories
 run mkdir -p "$HOME_DIR/.vim/undo" "$HOME_DIR/.vim/backup" "$HOME_DIR/.vim/swap"

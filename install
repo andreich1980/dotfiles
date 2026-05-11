@@ -66,12 +66,13 @@ fi
 
 # Load modules
 if [[ -d "$DOTFILES_DIR/modules" ]]; then
-    for module in "$DOTFILES_DIR/modules"/*.sh; do
-        if [[ -f "$module" ]]; then
+    for module_install in "$DOTFILES_DIR/modules"/*/install.sh; do
+        if [[ -f "$module_install" ]]; then
+            module_name=$(basename "$(dirname "$module_install")")
             echo
-            echo "📦 Applying module: $(basename "$module" .sh | tr '[:lower:]' '[:upper:]')"
+            echo "📦 Applying module: $(echo "$module_name" | tr '[:lower:]' '[:upper:]')"
             # shellcheck source=/dev/null
-            source "$module"
+            source "$module_install"
         fi
     done
 fi

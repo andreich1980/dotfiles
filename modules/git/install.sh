@@ -11,7 +11,7 @@ GITCONFIG_MAIN="$HOME_DIR/.gitconfig"
 backup_file "$GITCONFIG_MAIN"
 
 # 2. Link our shared config
-safe_link "$DOTFILES_DIR/git/.gitconfig" "$GITCONFIG_SHARED"
+safe_link "$DOTFILES_DIR/modules/git/.gitconfig" "$GITCONFIG_SHARED"
 
 # 3. Include shared config in main .gitconfig
 include_line "[include] path = ~/.gitconfig_shared" "$GITCONFIG_MAIN"

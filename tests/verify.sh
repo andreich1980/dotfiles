@@ -185,7 +185,7 @@ test_fish_wiring() {
         exit 1
     fi
 
-    if [[ "$(readlink "$fish_config_shared")" != "$DOTFILES_DIR/fish/config.fish" ]]; then
+    if [[ "$(readlink "$fish_config_shared")" != "$DOTFILES_DIR/modules/fish/config.fish" ]]; then
         echo "FAILED: config_shared.fish points to wrong location"
         exit 1
     fi
@@ -274,19 +274,19 @@ test_all() {
     # 3. Test Linking
     echo "Testing linking..."
     local gitconfig_shared="$REAL_HOME/.gitconfig_shared"
-    if [[ "$(readlink "$gitconfig_shared")" != "$DOTFILES_DIR/git/.gitconfig" ]]; then
+    if [[ "$(readlink "$gitconfig_shared")" != "$DOTFILES_DIR/modules/git/.gitconfig" ]]; then
         echo "FAILED: git symlink points to wrong location"
         exit 1
     fi
 
     local vimrc_shared="$REAL_HOME/.vimrc_shared"
-    if [[ "$(readlink "$vimrc_shared")" != "$DOTFILES_DIR/vim/.vimrc" ]]; then
+    if [[ "$(readlink "$vimrc_shared")" != "$DOTFILES_DIR/modules/vim/.vimrc" ]]; then
         echo "FAILED: vim symlink points to wrong location"
         exit 1
     fi
 
     local fish_config_shared="$REAL_HOME/.config/fish/config_shared.fish"
-    if [[ "$(readlink "$fish_config_shared")" != "$DOTFILES_DIR/fish/config.fish" ]]; then
+    if [[ "$(readlink "$fish_config_shared")" != "$DOTFILES_DIR/modules/fish/config.fish" ]]; then
         echo "FAILED: fish symlink points to wrong location"
         exit 1
     fi
