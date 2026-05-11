@@ -38,7 +38,7 @@
 - [x] 02-01-PLAN.md — Implement Vim module and shared configuration.
 
 ### Phase 3: Fish & Environment
-**Goal**: Implement Fish support and handle machine-specific environment configurations.
+**Goal**: Functional Fish configuration with local override support.
 **Mode**: mvp
 **Depends on**: Phase 2
 **Requirements**: MOD-03, ENV-01, ENV-02
@@ -46,7 +46,8 @@
   1. User has a functional Fish configuration linked from the dotfiles directory.
   2. User can apply machine-specific settings via a local config file that is automatically sourced.
   3. Shell configurations are correctly applied to the standard paths used in Linux Mint.
-**Plans**: TBD
+**Plans**:
+- [ ] 03-01-PLAN.md — Implement Fish module with local override support.
 
 ### Phase 4: Documentation
 **Goal**: Provide clear instructions for manual tool installation and script usage.
@@ -64,5 +65,5 @@
 |-------|----------------|--------|-----------|
 | 1. Engine & Git Module | 2/2 | Completed | 2026-05-11 |
 | 2. Vim Module | 1/1 | Complete   | 2026-05-11 |
-| 3. Zsh & Environment | 0/0 | Not started | - |
+| 3. Zsh & Environment | 0/1 | In Progress | - |
 | 4. Documentation | 0/0 | Not started | - |
