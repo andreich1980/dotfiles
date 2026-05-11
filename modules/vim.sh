@@ -2,7 +2,7 @@
 
 # Vim configuration module
 
-echo "Configuring Vim..."
+echo "⚙️ Configuring Vim..."
 
 VIMRC_SHARED="$HOME_DIR/.vimrc_shared"
 VIMRC_MAIN="$HOME_DIR/.vimrc"

@@ -2,7 +2,7 @@
 
 # Git configuration module
 
-echo "Configuring Git..."
+echo "⚙️ Configuring Git..."
 
 GITCONFIG_SHARED="$HOME_DIR/.gitconfig_shared"
 GITCONFIG_MAIN="$HOME_DIR/.gitconfig"
