@@ -51,8 +51,6 @@ Deferred to future release. Tracked but not in current roadmap.
 
 ## Traceability
 
-Which phases cover which requirements. Updated during roadmap creation.
-
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | ENG-01 | Phase 1 | Pending |
@@ -60,13 +58,13 @@ Which phases cover which requirements. Updated during roadmap creation.
 | ENG-03 | Phase 1 | Pending |
 | ENG-04 | Phase 1 | Pending |
 | ENG-05 | Phase 1 | Pending |
-| MOD-01 | Phase 2 | Pending |
+| MOD-01 | Phase 1 | Pending |
 | MOD-02 | Phase 2 | Pending |
-| MOD-03 | Phase 2 | Pending |
-| ENV-01 | Phase 2 | Pending |
-| ENV-02 | Phase 2 | Pending |
-| DOC-01 | Phase 3 | Pending |
-| DOC-02 | Phase 3 | Pending |
+| MOD-03 | Phase 3 | Pending |
+| ENV-01 | Phase 3 | Pending |
+| ENV-02 | Phase 3 | Pending |
+| DOC-01 | Phase 4 | Pending |
+| DOC-02 | Phase 4 | Pending |
 
 **Coverage:**
 - v1 requirements: 12 total
@@ -75,4 +73,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-05-11*
-*Last updated: 2026-05-11 after initial definition*
+*Last updated: 2026-05-11 after roadmap creation*
