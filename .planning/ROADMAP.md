@@ -9,7 +9,7 @@
 - [ ] **Phase 1: Engine & Git Module** - Core script logic and first tool implementation.
 - [ ] **Phase 2: Vim Module** - Adding Vim configuration support.
 - [ ] **Phase 3: Zsh & Environment** - Zsh support and environment-specific overrides.
-- [ ] **Phase 4: Documentation** - Usage guides and manual setup instructions.
+- [ ] **Phase 3: Fish & Environment** - Fish support and environment-specific overrides.
 
 ## Phase Details
 
@@ -35,14 +35,14 @@
   2. Existing Vim configurations are safely backed up before linking.
 **Plans**: TBD
 
-### Phase 3: Zsh & Environment
-**Goal**: Implement Zsh support and handle machine-specific environment configurations.
+### Phase 3: Fish & Environment
+**Goal**: Implement Fish support and handle machine-specific environment configurations.
 **Mode**: mvp
 **Depends on**: Phase 2
 **Requirements**: MOD-03, ENV-01, ENV-02
 **Success Criteria** (what must be TRUE):
-  1. User has a functional Zsh configuration linked from the dotfiles directory.
-  2. User can apply machine-specific settings via a `.zshrc_local` file that is automatically sourced.
+  1. User has a functional Fish configuration linked from the dotfiles directory.
+  2. User can apply machine-specific settings via a local config file that is automatically sourced.
   3. Shell configurations are correctly applied to the standard paths used in Linux Mint.
 **Plans**: TBD
 

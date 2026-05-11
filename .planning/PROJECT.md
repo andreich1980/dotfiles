@@ -2,7 +2,7 @@
 
 ## What This Is
 
-A custom dotfiles management system using shell scripts to automate the linking and syncing of configurations for Vim, Zsh, and Git on Linux (specifically Linux Mint). It aims to simplify the setup of new machines and ensure consistent configuration across all devices.
+A custom dotfiles management system using shell scripts to automate the linking and syncing of configurations for Vim, Fish shell, and Git on Linux (specifically Linux Mint). It aims to simplify the setup of new machines and ensure consistent configuration across all devices.
 
 ## Core Value
 
@@ -33,7 +33,7 @@ Effortless syncing and application of configurations across Linux machines via G
 
 ## Context
 
-The user has an existing dotfiles repository with basic configurations for Git, Vim, and Zsh. There are already some installation scripts (`install`, `install.ps1`), but they need improvement and better documentation. The user values modularity (each tool has its own config) and simplicity.
+The user has an existing dotfiles repository with basic configurations for Git, Vim, and Zsh (transitioning to Fish). There are already some installation scripts (`install`, `install.ps1`), but they need improvement and better documentation. The user values modularity (each tool has its own config) and simplicity. Fish shell is the preferred environment.
 
 ## Constraints
 

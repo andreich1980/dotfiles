@@ -19,12 +19,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [ ] **MOD-01**: Git configuration module (links `.gitconfig`).
 - [ ] **MOD-02**: Vim configuration module (links `.vimrc`).
-- [ ] **MOD-03**: Zsh configuration module (links `.zshrc` and handles `.zshrc_local`).
+- [ ] **MOD-03**: Fish configuration module (links `config.fish` and handles local overrides).
 
 ### Environment & Integration
 
 - [ ] **ENV-01**: Support for Linux Mint specific paths and configurations.
-- [ ] **ENV-02**: Local override pattern: source `.zshrc_local` if it exists.
+- [ ] **ENV-02**: Local override pattern: source local config if it exists (e.g., `conf.d/local.fish`).
 
 ### Documentation
 
