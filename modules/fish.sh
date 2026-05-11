@@ -2,7 +2,7 @@
 
 # Fish configuration module
 
-echo "🐟 Configuring Fish..."
+echo "Configuring Fish..."
 
 FISH_CONFIG_DIR="$HOME_DIR/.config/fish"
 FISH_CONFIG_MAIN="$FISH_CONFIG_DIR/config.fish"
