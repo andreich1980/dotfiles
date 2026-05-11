@@ -38,7 +38,6 @@ This research establishes a robust foundation for a modular dotfiles installatio
 | ENG-01 | Script is idempotent | Verified `readlink` and `grep` existence checks. |
 | ENG-02 | Automatically backs up configs | Defined `backup_file` pattern with `.backup` suffix. |
 | ENG-03 | Atomic linking/safe appending | Identified `ln -s ... tmp && mv tmp target` pattern. |
-| ENG-04 | Check for tool dependencies | Verified `command -v` usage. |
 | ENG-05 | Support "dry-run" mode | Identified Wrapper Function pattern for global flag. |
 | ENG-06 | Check if directive exists before adding | Verified `grep -qFx` for exact line matching. |
 | MOD-01 | Git configuration module | Verified `[include]` syntax in `man git-config`. |
@@ -48,7 +47,6 @@ This research establishes a robust foundation for a modular dotfiles installatio
 
 | Capability | Primary Tier | Secondary Tier | Rationale |
 |------------|-------------|----------------|-----------|
-| Dependency Checking | CLI Engine | — | Engine must verify tools exist before attempting to wire them. |
 | File Backup | CLI Engine | — | Core safety feature owned by the engine's filesystem primitives. |
 | Symlink Management | CLI Engine | — | Handles atomicity and existence checks for all modules. |
 | Git Include Wiring | Git Module | CLI Engine | Module defines the specific directive; Engine provides the "append if missing" utility. |
@@ -210,17 +208,17 @@ done
 ### Test Framework
 | Property | Value |
 |----------|-------|
-| Framework | **BATS (Bash Automated Testing System)** |
-| Config file | `tests/setup.bats` |
-| Quick run command | `bats tests/` |
+| Framework | **Custom Bash Script** |
+| Config file | `tests/verify.sh` |
+| Quick run command | `./tests/verify.sh` |
 
 ### Phase Requirements → Test Map
 | Req ID | Behavior | Test Type | Automated Command | File Exists? |
 |--------|----------|-----------|-------------------|-------------|
-| ENG-01 | Idempotency | Integration | `bats tests/idempotency.bats` | ❌ Wave 0 |
-| ENG-02 | Backup creation | Unit | `bats tests/backup.bats` | ❌ Wave 0 |
-| ENG-05 | Dry-run mode | Unit | `bats tests/dry_run.bats` | ❌ Wave 0 |
-| MOD-01 | Git include wiring | Integration | `bats tests/git_module.bats` | ❌ Wave 0 |
+| ENG-01 | Idempotency | Integration | `./tests/verify.sh --test-idempotency` | ❌ Wave 0 |
+| ENG-02 | Backup creation | Unit | `./tests/verify.sh --test-backup` | ❌ Wave 0 |
+| ENG-05 | Dry-run mode | Unit | `./tests/verify.sh --test-dry-run` | ❌ Wave 0 |
+| MOD-01 | Git include wiring | Integration | `./tests/verify.sh --test-git-wiring` | ❌ Wave 0 |
 
 ## Security Domain
 

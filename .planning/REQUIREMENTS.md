@@ -9,7 +9,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Installation Engine
 
-- [ ] **ENG-01**: Script is idempotent (can run multiple times without side effects).
+- [x] **ENG-01**: Script is idempotent (can run multiple times without side effects).
 - [x] **ENG-02**: Script automatically backs up existing configurations (e.g., `~/.gitconfig` -> `~/.gitconfig.backup`) before modification.
 - [x] **ENG-03**: Script uses atomic linking or safe appending to prevent broken states.
 - [ ] **ENG-04**: [DEFERRED to v2] Script checks for required tool dependencies (git, vim, etc.) before proceeding.
@@ -18,7 +18,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Tool Modules
 
-- [ ] **MOD-01**: Git configuration module (wires up `git/.gitconfig` via `[include]` in `~/.gitconfig`).
+- [x] **MOD-01**: Git configuration module (wires up `git/.gitconfig` via `[include]` in `~/.gitconfig`).
 - [ ] **MOD-02**: Vim configuration module (links `.vimrc`).
 - [ ] **MOD-03**: Fish configuration module (links `config.fish` and handles local overrides).
 
@@ -54,12 +54,12 @@ Deferred to future release. Tracked but not in current roadmap.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| ENG-01 | Phase 1 | Pending |
+| ENG-01 | Phase 1 | Complete |
 | ENG-02 | Phase 1 | Complete |
 | ENG-03 | Phase 1 | Complete |
 | ENG-04 | Phase 1 | Pending |
 | ENG-05 | Phase 1 | Complete |
-| MOD-01 | Phase 1 | Pending |
+| MOD-01 | Phase 1 | Complete |
 | MOD-02 | Phase 2 | Pending |
 | MOD-03 | Phase 3 | Pending |
 | ENV-01 | Phase 3 | Pending |

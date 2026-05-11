@@ -6,7 +6,7 @@
 
 ## Phases
 
-- [ ] **Phase 1: Engine & Git Module** - Core script logic and first tool implementation.
+- [x] **Phase 1: Engine & Git Module** - Core script logic and first tool implementation.
 - [ ] **Phase 2: Vim Module** - Adding Vim configuration support.
 - [ ] **Phase 3: Fish & Environment** - Fish support and environment-specific overrides.
 
@@ -22,7 +22,7 @@
   2. Original `~/.gitconfig` is backed up to `~/.gitconfig.backup` before any changes occur.
   3. Script is idempotent: running it multiple times does not duplicate the `include` directive.
   4. User can preview intended changes (backups and modifications) using a "dry-run" flag.
-**Plans**: TBD
+**Plans**: [Plan 1 Complete](phases/01-engine-git-module/01-engine-SUMMARY.md), [Plan 2 Complete](phases/01-engine-git-module/02-git-module-SUMMARY.md)
 
 ### Phase 2: Vim Module
 **Goal**: Extend the system to support Vim configuration management.
@@ -59,7 +59,10 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Engine & Git Module | 1/2 | In Progress | - |
+| 1. Engine & Git Module | 2/2 | Completed | 2026-05-11 |
 | 2. Vim Module | 0/0 | Not started | - |
+| 3. Zsh & Environment | 0/0 | Not started | - |
+| 4. Documentation | 0/0 | Not started | - |
+Vim Module | 0/0 | Not started | - |
 | 3. Zsh & Environment | 0/0 | Not started | - |
 | 4. Documentation | 0/0 | Not started | - |
