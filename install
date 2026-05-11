@@ -5,7 +5,7 @@ set -euo pipefail
 
 # Constants
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-HOME_DIR="${HOME:-${HOME_DIR_MOCK:-}}" # Allow mocking for tests
+HOME_DIR="${HOME_DIR_MOCK:-${HOME}}" # Allow mocking for tests
 
 # State
 DRY_RUN=false
