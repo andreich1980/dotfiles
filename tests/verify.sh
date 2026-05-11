@@ -148,12 +148,63 @@ test_vim_wiring() {
     echo "vim wiring passed."
 }
 
+test_fish_wiring() {
+    echo "Testing fish wiring..."
+    
+    # Run the install script with mock home
+    export HOME_DIR_MOCK="$HOME_DIR_MOCK"
+    "$DOTFILES_DIR/install" > /dev/null
+    
+    local fish_config_dir="$HOME_DIR_MOCK/.config/fish"
+    local fish_config="$fish_config_dir/config.fish"
+    local fish_config_shared="$fish_config_dir/config_shared.fish"
+    local fish_config_local="$fish_config_dir/config.local.fish"
+    
+    if [[ ! -d "$fish_config_dir" ]]; then
+        echo "FAILED: fish config directory not created"
+        exit 1
+    fi
+
+    if [[ ! -f "$fish_config" ]]; then
+        echo "FAILED: config.fish not created"
+        exit 1
+    fi
+    
+    if ! grep -q "source ~/.config/fish/config_shared.fish" "$fish_config"; then
+        echo "FAILED: config.fish does not source config_shared.fish"
+        exit 1
+    fi
+
+    if ! grep -q "source ~/.config/fish/config.local.fish" "$fish_config"; then
+        echo "FAILED: config.fish does not source config.local.fish"
+        exit 1
+    fi
+    
+    if [[ ! -L "$fish_config_shared" ]]; then
+        echo "FAILED: config_shared.fish is not a symlink"
+        exit 1
+    fi
+
+    if [[ "$(readlink "$fish_config_shared")" != "$DOTFILES_DIR/fish/config.fish" ]]; then
+        echo "FAILED: config_shared.fish points to wrong location"
+        exit 1
+    fi
+
+    if [[ ! -f "$fish_config_local" ]]; then
+        echo "FAILED: config.local.fish not created"
+        exit 1
+    fi
+    
+    echo "fish wiring passed."
+}
+
 test_all() {
     echo "Running all integration tests..."
     
     # 0. Test Individual Wiring
     test_git_wiring
     test_vim_wiring
+    test_fish_wiring
 
     # 1. Test Dry Run
     echo "Testing dry run..."
@@ -233,6 +284,12 @@ test_all() {
         echo "FAILED: vim symlink points to wrong location"
         exit 1
     fi
+
+    local fish_config_shared="$REAL_HOME/.config/fish/config_shared.fish"
+    if [[ "$(readlink "$fish_config_shared")" != "$DOTFILES_DIR/fish/config.fish" ]]; then
+        echo "FAILED: fish symlink points to wrong location"
+        exit 1
+    fi
     echo "Linking passed."
     
     echo "All integration tests passed!"
@@ -248,12 +305,15 @@ case "${1:-}" in
     --test-vim-wiring)
         test_vim_wiring
         ;;
+    --test-fish-wiring)
+        test_fish_wiring
+        ;;
     --test-all)
         test_primitives
         test_all
         ;;
     *)
-        echo "Usage: $0 {--test-primitives|--test-git-wiring|--test-vim-wiring|--test-all}"
+        echo "Usage: $0 {--test-primitives|--test-git-wiring|--test-vim-wiring|--test-fish-wiring|--test-all}"
         exit 1
         ;;
 esac
