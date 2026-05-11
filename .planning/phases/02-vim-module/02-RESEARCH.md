@@ -126,3 +126,7 @@ run mkdir -p "$HOME_DIR/.vim/swap"
 
 **Research date:** 2026-05-11
 **Valid until:** 2026-06-10
+
+## Open Questions (RESOLVED)
+- **Should the .vimrc link be absolute or relative?** RESOLVED: Use absolute paths via `$DOTFILES_DIR` to ensure reliability across different login shells.
+- **How to handle existing .vimrc?** RESOLVED: Use the `safe_link` primitive which automatically creates a `.backup` of any existing file before symlinking.

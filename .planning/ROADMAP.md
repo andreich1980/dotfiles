@@ -25,14 +25,16 @@
 **Plans**: [Plan 1 Complete](phases/01-engine-git-module/01-engine-SUMMARY.md), [Plan 2 Complete](phases/01-engine-git-module/02-git-module-SUMMARY.md)
 
 ### Phase 2: Vim Module
-**Goal**: Extend the system to support Vim configuration management.
+**Goal**: Extend the system to support Vim configuration management using the shared config pattern.
 **Mode**: mvp
 **Depends on**: Phase 1
 **Requirements**: MOD-02
 **Success Criteria** (what must be TRUE):
-  1. User can use the installation engine to link the `.vimrc` file.
+  1. User can use the installation engine to link the `.vimrc` file via a `source` directive.
   2. Existing Vim configurations are safely backed up before linking.
-**Plans**: TBD
+  3. Vim persistent state (undo, backup, swap) is centralized in `~/.vim/`.
+**Plans**: 
+- [Pending] 02-01-PLAN.md — Implement Vim module and shared configuration.
 
 ### Phase 3: Fish & Environment
 **Goal**: Implement Fish support and handle machine-specific environment configurations.
@@ -60,9 +62,6 @@
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Engine & Git Module | 2/2 | Completed | 2026-05-11 |
-| 2. Vim Module | 0/0 | Not started | - |
-| 3. Zsh & Environment | 0/0 | Not started | - |
-| 4. Documentation | 0/0 | Not started | - |
-Vim Module | 0/0 | Not started | - |
+| 2. Vim Module | 0/1 | In Progress | - |
 | 3. Zsh & Environment | 0/0 | Not started | - |
 | 4. Documentation | 0/0 | Not started | - |
