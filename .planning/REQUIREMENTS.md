@@ -10,11 +10,11 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Installation Engine
 
 - [ ] **ENG-01**: Script is idempotent (can run multiple times without side effects).
-- [ ] **ENG-02**: Script automatically backs up existing configurations (e.g., `~/.gitconfig` -> `~/.gitconfig.backup`) before modification.
-- [ ] **ENG-03**: Script uses atomic linking or safe appending to prevent broken states.
-- [ ] **ENG-04**: Script checks for required tool dependencies (git, vim, etc.) before proceeding.
-- [ ] **ENG-05**: Script supports a "dry-run" mode to show intended changes.
-- [ ] **ENG-06**: Script checks if an `include` or `source` directive already exists before adding it.
+- [x] **ENG-02**: Script automatically backs up existing configurations (e.g., `~/.gitconfig` -> `~/.gitconfig.backup`) before modification.
+- [x] **ENG-03**: Script uses atomic linking or safe appending to prevent broken states.
+- [ ] **ENG-04**: [DEFERRED to v2] Script checks for required tool dependencies (git, vim, etc.) before proceeding.
+- [x] **ENG-05**: Script supports a "dry-run" mode to show intended changes.
+- [x] **ENG-06**: Script checks if an `include` or `source` directive already exists before adding it.
 
 ### Tool Modules
 
@@ -55,10 +55,10 @@ Deferred to future release. Tracked but not in current roadmap.
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | ENG-01 | Phase 1 | Pending |
-| ENG-02 | Phase 1 | Pending |
-| ENG-03 | Phase 1 | Pending |
+| ENG-02 | Phase 1 | Complete |
+| ENG-03 | Phase 1 | Complete |
 | ENG-04 | Phase 1 | Pending |
-| ENG-05 | Phase 1 | Pending |
+| ENG-05 | Phase 1 | Complete |
 | MOD-01 | Phase 1 | Pending |
 | MOD-02 | Phase 2 | Pending |
 | MOD-03 | Phase 3 | Pending |

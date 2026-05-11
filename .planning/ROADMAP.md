@@ -16,7 +16,7 @@
 **Goal**: Establish the core installation engine and safely wire up Git configuration via an include directive.
 **Mode**: mvp
 **Depends on**: Nothing
-**Requirements**: ENG-01, ENG-02, ENG-03, ENG-04, ENG-05, ENG-06, MOD-01
+**Requirements**: ENG-01, ENG-02, ENG-03, ENG-05, ENG-06, MOD-01
 **Success Criteria** (what must be TRUE):
   1. User can run the script to wire up the Git configuration via an `[include]` in `~/.gitconfig`.
   2. Original `~/.gitconfig` is backed up to `~/.gitconfig.backup` before any changes occur.
@@ -59,7 +59,7 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Engine & Git Module | 0/0 | Not started | - |
+| 1. Engine & Git Module | 1/2 | In Progress | - |
 | 2. Vim Module | 0/0 | Not started | - |
 | 3. Zsh & Environment | 0/0 | Not started | - |
 | 4. Documentation | 0/0 | Not started | - |
