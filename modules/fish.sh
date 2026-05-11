@@ -12,7 +12,10 @@ FISH_CONFIG_LOCAL="$FISH_CONFIG_DIR/config.local.fish"
 # 1. Ensure config directory exists
 run mkdir -p "$FISH_CONFIG_DIR"
 
-# 2. Link shared config
+# 2. Back up existing config.fish if it exists and is not a symlink
+backup_file "$FISH_CONFIG_MAIN"
+
+# 3. Link shared config
 safe_link "$DOTFILES_DIR/fish/config.fish" "$FISH_CONFIG_SHARED"
 
 # 3. Build bootstrapper in config.fish
