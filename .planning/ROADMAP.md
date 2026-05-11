@@ -47,7 +47,7 @@
   2. User can apply machine-specific settings via a local config file that is automatically sourced.
   3. Shell configurations are correctly applied to the standard paths used in Linux Mint.
 **Plans**:
-- [ ] 03-01-PLAN.md — Implement Fish module with local override support.
+- [x] 03-01-PLAN.md — Implement Fish module with local override support.
 
 ### Phase 4: Documentation
 **Goal**: Provide clear instructions for manual tool installation and script usage.

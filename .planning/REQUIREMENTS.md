@@ -20,12 +20,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **MOD-01**: Git configuration module (wires up `git/.gitconfig` via `[include]` in `~/.gitconfig`).
 - [x] **MOD-02**: Vim configuration module (links `.vimrc`).
-- [ ] **MOD-03**: Fish configuration module (links `config.fish` and handles local overrides).
+- [x] **MOD-03**: Fish configuration module (links `config.fish` and handles local overrides).
 
 ### Environment & Integration
 
-- [ ] **ENV-01**: Support for Linux Mint specific paths and configurations.
-- [ ] **ENV-02**: Local override pattern: source local config if it exists (e.g., `conf.d/local.fish`).
+- [x] **ENV-01**: Support for Linux Mint specific paths and configurations.
+- [x] **ENV-02**: Local override pattern: source local config if it exists (e.g., `conf.d/local.fish`).
 
 ### Documentation
 
@@ -61,9 +61,9 @@ Deferred to future release. Tracked but not in current roadmap.
 | ENG-05 | Phase 1 | Complete |
 | MOD-01 | Phase 1 | Complete |
 | MOD-02 | Phase 2 | Complete |
-| MOD-03 | Phase 3 | Pending |
-| ENV-01 | Phase 3 | Pending |
-| ENV-02 | Phase 3 | Pending |
+| MOD-03 | Phase 3 | Complete |
+| ENV-01 | Phase 3 | Complete |
+| ENV-02 | Phase 3 | Complete |
 | DOC-01 | Phase 4 | Pending |
 | DOC-02 | Phase 4 | Pending |
 
