@@ -107,15 +107,61 @@ test_git_wiring() {
     echo "git wiring passed."
 }
 
+test_vim_wiring() {
+    echo "Testing vim wiring..."
+    
+    # Run the install script with mock home
+    export HOME_DIR_MOCK="$HOME_DIR_MOCK"
+    "$DOTFILES_DIR/install" > /dev/null
+    
+    local vimrc="$HOME_DIR_MOCK/.vimrc"
+    local vimrc_shared="$HOME_DIR_MOCK/.vimrc_shared"
+    local ideavimrc="$HOME_DIR_MOCK/.ideavimrc"
+    
+    if [[ ! -f "$vimrc" ]]; then
+        echo "FAILED: .vimrc not created"
+        exit 1
+    fi
+    
+    if ! grep -q "source ~/.vimrc_shared" "$vimrc"; then
+        echo "FAILED: .vimrc does not include .vimrc_shared"
+        exit 1
+    fi
+    
+    if [[ ! -L "$vimrc_shared" ]]; then
+        echo "FAILED: .vimrc_shared is not a symlink"
+        exit 1
+    fi
+
+    if [[ ! -L "$ideavimrc" ]]; then
+        echo "FAILED: .ideavimrc is not a symlink"
+        exit 1
+    fi
+
+    if [[ ! -d "$HOME_DIR_MOCK/.vim/undo" ]] || \
+       [[ ! -d "$HOME_DIR_MOCK/.vim/backup" ]] || \
+       [[ ! -d "$HOME_DIR_MOCK/.vim/swap" ]]; then
+        echo "FAILED: vim state directories not created"
+        exit 1
+    fi
+    
+    echo "vim wiring passed."
+}
+
 test_all() {
     echo "Running all integration tests..."
     
+    # 0. Test Individual Wiring
+    test_git_wiring
+    test_vim_wiring
+
     # 1. Test Dry Run
     echo "Testing dry run..."
     local DRY_HOME="$TEST_DIR/dry_home"
     mkdir -p "$DRY_HOME"
     HOME_DIR_MOCK="$DRY_HOME" "$DOTFILES_DIR/install" --dry-run > /dev/null
-    if [[ -f "$DRY_HOME/.gitconfig" ]] || [[ -f "$DRY_HOME/.gitconfig_shared" ]]; then
+    if [[ -f "$DRY_HOME/.gitconfig" ]] || [[ -f "$DRY_HOME/.gitconfig_shared" ]] || \
+       [[ -f "$DRY_HOME/.vimrc" ]] || [[ -f "$DRY_HOME/.vimrc_shared" ]]; then
         echo "FAILED: dry-run created files"
         exit 1
     fi
@@ -125,33 +171,50 @@ test_all() {
     echo "Testing backup and idempotency..."
     local REAL_HOME="$TEST_DIR/real_home"
     mkdir -p "$REAL_HOME"
+    
+    # Setup pre-existing files
     local gitconfig="$REAL_HOME/.gitconfig"
     printf "[user]\n  name = Old Name\n" > "$gitconfig"
+    local vimrc="$REAL_HOME/.vimrc"
+    printf "\" old vim config\n" > "$vimrc"
     
     HOME_DIR_MOCK="$REAL_HOME" "$DOTFILES_DIR/install" > /dev/null
     
     if [[ ! -f "$gitconfig.backup" ]]; then
-        echo "FAILED: backup not created"
+        echo "FAILED: gitconfig backup not created"
+        exit 1
+    fi
+
+    if [[ ! -f "$vimrc.backup" ]]; then
+        echo "FAILED: vimrc backup not created"
         exit 1
     fi
     
     if [[ "$(cat "$gitconfig.backup")" != "[user]
   name = Old Name" ]]; then
-         echo "FAILED: backup content mismatch"
-         echo "Expected:"
-         printf "[user]\n  name = Old Name\n"
-         echo "Got:"
-         cat "$gitconfig.backup"
+         echo "FAILED: gitconfig backup content mismatch"
+         exit 1
+    fi
+
+    if [[ "$(cat "$vimrc.backup")" != "\" old vim config" ]]; then
+         echo "FAILED: vimrc backup content mismatch"
          exit 1
     fi
     
     # Second run for idempotency
     HOME_DIR_MOCK="$REAL_HOME" "$DOTFILES_DIR/install" > /dev/null
     
-    local include_count
-    include_count=$(grep -c "path = ~/.gitconfig_shared" "$gitconfig")
-    if [[ "$include_count" -ne 1 ]]; then
-        echo "FAILED: duplicate include lines found ($include_count)"
+    local git_include_count
+    git_include_count=$(grep -c "path = ~/.gitconfig_shared" "$gitconfig")
+    if [[ "$git_include_count" -ne 1 ]]; then
+        echo "FAILED: duplicate git include lines found ($git_include_count)"
+        exit 1
+    fi
+
+    local vim_source_count
+    vim_source_count=$(grep -c "source ~/.vimrc_shared" "$vimrc")
+    if [[ "$vim_source_count" -ne 1 ]]; then
+        echo "FAILED: duplicate vim source lines found ($vim_source_count)"
         exit 1
     fi
     
@@ -161,9 +224,13 @@ test_all() {
     echo "Testing linking..."
     local gitconfig_shared="$REAL_HOME/.gitconfig_shared"
     if [[ "$(readlink "$gitconfig_shared")" != "$DOTFILES_DIR/git/.gitconfig" ]]; then
-        echo "FAILED: symlink points to wrong location"
-        echo "Got: $(readlink "$gitconfig_shared")"
-        echo "Expected: $DOTFILES_DIR/git/.gitconfig"
+        echo "FAILED: git symlink points to wrong location"
+        exit 1
+    fi
+
+    local vimrc_shared="$REAL_HOME/.vimrc_shared"
+    if [[ "$(readlink "$vimrc_shared")" != "$DOTFILES_DIR/vim/.vimrc" ]]; then
+        echo "FAILED: vim symlink points to wrong location"
         exit 1
     fi
     echo "Linking passed."
@@ -178,13 +245,15 @@ case "${1:-}" in
     --test-git-wiring)
         test_git_wiring
         ;;
+    --test-vim-wiring)
+        test_vim_wiring
+        ;;
     --test-all)
         test_primitives
-        test_git_wiring
         test_all
         ;;
     *)
-        echo "Usage: $0 {--test-primitives|--test-git-wiring|--test-all}"
+        echo "Usage: $0 {--test-primitives|--test-git-wiring|--test-vim-wiring|--test-all}"
         exit 1
         ;;
 esac
