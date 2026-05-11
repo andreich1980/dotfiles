@@ -1,20 +1,78 @@
 #!/usr/bin/env bash
 
-DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Strict mode
+set -euo pipefail
 
-# Zsh
-CONFIG_FILE="$HOME/.zshrc"
-CUSTOM_CONFIG="$HOME/.zshrc_local"
+# Constants
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+HOME_DIR="${HOME:-${HOME_DIR_MOCK:-}}" # Allow mocking for tests
 
-ln -sf $DOTFILES/zsh/.zshrc_local $CUSTOM_CONFIG
+# State
+DRY_RUN=false
 
-if ! grep -Fxq "source $CUSTOM_CONFIG" "$CONFIG_FILE"; then
-    echo -e "source $CUSTOM_CONFIG\n" >> "$CONFIG_FILE"
+# Help message
+usage() {
+    cat <<EOF
+Usage: $(basename "$0") [options]
+
+Options:
+    --dry-run   Show what would be done without making any changes.
+    --help      Show this help message.
+EOF
+    exit 0
+}
+
+# Parse arguments
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --dry-run)
+            DRY_RUN=true
+            shift
+            ;;
+        --help)
+            usage
+            ;;
+        *)
+            echo "Unknown option: $1"
+            usage
+            ;;
+    esac
+done
+
+if [[ "$DRY_RUN" == true ]]; then
+    echo "--- DRY-RUN MODE ACTIVE ---"
 fi
 
-# Git
-ln -sf $DOTFILES/git/.gitconfig $HOME/.gitconfig
+# Dry-run wrapper
+run() {
+    if [[ "$DRY_RUN" == true ]]; then
+        echo "[DRY-RUN] $*"
+    else
+        "$@"
+    fi
+}
 
-# vim
-rm -f $HOME/.vimrc
-ln -s $DOTFILES/vim/.vimrc $HOME/.vimrc
+# Export for modules
+export DOTFILES_DIR
+export HOME_DIR
+export DRY_RUN
+export -f run
+
+# Source core library
+if [[ -f "$DOTFILES_DIR/lib/core.sh" ]]; then
+    # shellcheck source=lib/core.sh
+    source "$DOTFILES_DIR/lib/core.sh"
+fi
+
+# Load modules
+if [[ -d "$DOTFILES_DIR/modules" ]]; then
+    for module in "$DOTFILES_DIR/modules"/*.sh; do
+        if [[ -f "$module" ]]; then
+            echo "-> Applying module: $(basename "$module" .sh)"
+            # shellcheck source=/dev/null
+            source "$module"
+        fi
+    done
+fi
+
+echo "Done!"
