@@ -1,0 +1,73 @@
+" Join lines with Shift+J
+set ideajoin
+
+" Relative line numbers
+set relativenumber number
+
+" Integrate with system clipboard
+set clipboard=unnamedplus,unnamed,ideaput
+
+" Set <leader> to <Space>
+let mapleader = " "
+
+" keep some lines before and after the cursor visible
+set scrolloff=5 sidescroll=10
+
+" Selection with Shift + Arrows
+nmap <S-Up> v<Up>
+nmap <S-Down> v<Down>
+nmap <S-Left> v<Left>
+nmap <S-Right> v<Right>
+vmap <S-Up> <Up>
+vmap <S-Down> <Down>
+vmap <S-Left> <Left>
+vmap <S-Right> <Right>
+imap <S-Up> <Esc>v<Up>
+imap <S-Down> <Esc>v<Down>
+imap <S-Left> <Esc>v<Left>
+imap <S-Right> <Esc>v<Right>
+
+" Indentation with Tab
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+inoremap <S-Tab> <C-D>
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
+" Easy exit insert mode
+imap jj <Esc>
+
+nnoremap <leader>vv :e ~/.ideavimrc<CR>
+nnoremap <leader>vr :source ~/.ideavimrc<CR>
+nnoremap <leader>vm :e Modules/Memberships/Config/config.php<CR>
+nnoremap <leader>vl :e local_modules_statuses.json<CR>
+nnoremap <leader>vd :e ../docker-compose.yml<CR>
+
+" Add , or ; at the end of the line
+nnoremap <leader>, mzA,<Esc>`z
+nnoremap <leader>; mzA;<Esc>`z
+
+" Wrap word in quotes, parentheses, etc
+" - remember the current cursor position,
+" - perform the action,
+" - restore the cursor position
+" NORMAL mode
+nnoremap <leader>' mzciw''<Esc>P`zl
+nnoremap <leader>" mzciw""<Esc>P`zl
+nnoremap <leader>` mzciw``<Esc>P`zl
+nnoremap <leader>( mzciw()<Esc>P`zl
+nnoremap <leader>[ mzciw[]<Esc>P`zl
+nnoremap <leader>{ mzciw{}<Esc>P`zl
+
+" Toggle boolean value: true <-> false
+nnoremap <leader>tf mz:s/true/false/<CR>`z
+nnoremap <leader>tt mz:s/false/true/<CR>`z
+nnoremap <leader><Space> mz:s/true/__TEMP_TRUE__/e<CR>:s/false/true/e<CR>:s/__TEMP_TRUE__/false/e<CR>`z
+
+nnoremap <leader>td A// todo DSE-44786:
+
+nmap gb <Action>(Back)
+nmap gf <Action>(Forward)
+
+" Git History for the current file
+nmap <leader>gh :action Vcs.ShowTabbedFileHistory<CR>

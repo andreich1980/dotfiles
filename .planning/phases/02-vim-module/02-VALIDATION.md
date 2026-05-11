@@ -4,7 +4,7 @@
 
 | ID | Requirement | Success Criteria |
 |----|-------------|------------------|
-| MOD-02 | Vim configuration module (links .vimrc) | User can use the installation engine to link the `.vimrc` file via a `source` directive; existing configurations are backed up; persistent state is centralized. |
+| MOD-02 | Vim configuration module (links .vimrc and .ideavimrc) | User can use the installation engine to link the `.vimrc` file via a `source` directive and `.ideavimrc` via a direct symlink; existing configurations are backed up; persistent state is centralized. |
 
 ## Strategy
 We will extend the existing `tests/verify.sh` to include specific tests for the Vim module. These tests will ensure that the symlinking, main `.vimrc` modification, and state directory creation are handled correctly and idempotently.
@@ -13,16 +13,17 @@ We will extend the existing `tests/verify.sh` to include specific tests for the 
 
 | ID | Goal | Command |
 |----|------|---------|
-| V5 | Vim wiring and symlink | `./tests/verify.sh --test-vim-wiring` |
+| V5 | Vim wiring and symlinks (.vimrc_shared, .ideavimrc) | `./tests/verify.sh --test-vim-wiring` |
 | V6 | Vim state directories creation | `./tests/verify.sh --test-vim-wiring` |
 | V7 | Overall integration | `./tests/verify.sh --test-all` |
 
 ## Manual Verification
 
-### MV-03: Visual Inspection of `~/.vimrc`
+### MV-03: Visual Inspection of `~/.vimrc` and `~/.ideavimrc`
 1. Run `./install`.
 2. Open `~/.vimrc`.
 3. Verify that `source ~/.vimrc_shared` is present.
+4. Verify that `~/.ideavimrc` is a symlink to `$DOTFILES_DIR/vim/.ideavimrc`.
 
 ### MV-04: Verification of Vim State Directories
 1. Run `ls -d ~/.vim/undo ~/.vim/backup ~/.vim/swap`.
@@ -36,5 +37,6 @@ We will extend the existing `tests/verify.sh` to include specific tests for the 
 - [ ] `~/.vimrc.backup` exists if `~/.vimrc` existed as a file.
 - [ ] `~/.vimrc_shared` is a symlink to `$DOTFILES_DIR/vim/.vimrc`.
 - [ ] `~/.vimrc` contains the `source ~/.vimrc_shared` directive.
+- [ ] `~/.ideavimrc` is a symlink to `$DOTFILES_DIR/vim/.ideavimrc`.
 - [ ] `~/.vim/undo/`, `~/.vim/backup/`, and `~/.vim/swap/` directories exist.
 - [ ] Vim configuration correctly paths persistent state to these directories.

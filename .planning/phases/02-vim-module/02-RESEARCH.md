@@ -6,11 +6,13 @@
 
 ## Summary
 
-The goal of Phase 2 is to integrate the Vim configuration into the installation engine. This involves symlinking the `.vimrc` file and ensuring that Vim's persistent state (undo files, backups, and swap files) is managed cleanly. 
+The goal of Phase 2 is to integrate the Vim configuration into the installation engine. This involves symlinking the `.vimrc` and `.ideavimrc` files and ensuring that Vim's persistent state (undo files, backups, and swap files) is managed cleanly. 
 
 Research confirms that while Vim provides persistent undo and backup features, by default, it clutters the filesystem by placing these files in the same directory as the edited files. To achieve a "clean" installation, the module should create a dedicated `~/.vim` directory structure and configure Vim to use it.
 
-**Primary recommendation:** Symlink `vim/.vimrc` to `~/.vimrc` using the existing `safe_link` primitive, create `~/.vim/undo`, `~/.vim/backup`, and `~/.vim/swap` directories, and update the `.vimrc` to explicitly use these paths.
+JetBrains IDEs use `.ideavimrc` for Vim emulation settings. This file should be symlinked directly to the home directory.
+
+**Primary recommendation:** Symlink `vim/.vimrc` to `~/.vimrc_shared` and source it from `~/.vimrc` using the existing `safe_link` and `include_line` primitives. Create `~/.vim/undo`, `~/.vim/backup`, and `~/.vim/swap` directories, and update the `.vimrc` to explicitly use these paths. Additionally, symlink `vim/.ideavimrc` to `~/.ideavimrc` directly.
 
 ## Architectural Responsibility Map
 
@@ -26,6 +28,7 @@ Research confirms that while Vim provides persistent undo and backup features, b
 | Library | Version | Purpose | Why Standard |
 |---------|---------|---------|--------------|
 | Vim | 9.1 | Primary Text Editor | Standard on Linux Mint; supports persistent undo. |
+| IdeaVim | N/A | JetBrains Vim Emulation | Used in IntelliJ/PyCharm/WebStorm. |
 
 ### Supporting
 | Library | Version | Purpose | When to Use |
@@ -37,7 +40,8 @@ Research confirms that while Vim provides persistent undo and backup features, b
 ### Recommended Project Structure
 ```
 vim/
-└── .vimrc           # Shared configuration file
+├── .vimrc           # Shared configuration file
+└── .ideavimrc       # JetBrains specific Vim config
 modules/
 └── vim.sh           # Installation logic for Vim
 ```
@@ -56,7 +60,10 @@ set directory=~/.vim/swap//
 ```
 *Note: The `//` at the end of the paths tells Vim to use the full path of the file to generate the state filename, avoiding name collisions for files with the same name in different directories.*
 
-### Anti-Patterns to Avoid
+### Pattern 2: IDE Compatibility
+Symlinking `.ideavimrc` ensures that Vim keybindings and settings are consistent between the terminal and JetBrains IDEs.
+
+## Anti-Patterns to Avoid
 - **Implicit State Locations:** Relying on default behavior for `undofile` and `backup` leads to `.un~` and `~` files appearing in every git repository and document folder.
 
 ## Don't Hand-Roll
@@ -80,8 +87,12 @@ set directory=~/.vim/swap//
 
 ### Recommended Module Logic (`modules/vim.sh`)
 ```bash
-# Symlink .vimrc
-safe_link "$DOTFILES_DIR/vim/.vimrc" "$HOME_DIR/.vimrc"
+# Symlink .vimrc (via shared pattern)
+safe_link "$DOTFILES_DIR/vim/.vimrc" "$HOME_DIR/.vimrc_shared"
+include_line "source ~/.vimrc_shared" "$HOME_DIR/.vimrc"
+
+# Symlink .ideavimrc
+safe_link "$DOTFILES_DIR/vim/.ideavimrc" "$HOME_DIR/.ideavimrc"
 
 # Create state directories
 run mkdir -p "$HOME_DIR/.vim/undo"
@@ -101,9 +112,10 @@ run mkdir -p "$HOME_DIR/.vim/swap"
 ### Phase Requirements → Test Map
 | Req ID | Behavior | Test Type | Automated Command |
 |--------|----------|-----------|-------------------|
-| MOD-02 | `.vimrc` is symlinked | Integration | `test -L ~/.vimrc` |
+| MOD-02 | `.vimrc_shared` is symlinked | Integration | `test -L ~/.vimrc_shared` |
+| MOD-02 | `.vimrc` sources shared | Integration | `grep -q "source ~/.vimrc_shared" ~/.vimrc` |
+| MOD-02 | `.ideavimrc` is symlinked | Integration | `test -L ~/.ideavimrc` |
 | MOD-02 | `~/.vim/undo` exists | Integration | `test -d ~/.vim/undo` |
-| MOD-02 | `~/.vim/backup` exists| Integration | `test -d ~/.vim/backup` |
 
 ### Wave 0 Gaps
 - [ ] Update `tests/verify.sh` to include `test_vim_wiring` function.

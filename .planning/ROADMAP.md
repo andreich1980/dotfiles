@@ -31,10 +31,11 @@
 **Requirements**: MOD-02
 **Success Criteria** (what must be TRUE):
   1. User can use the installation engine to link the `.vimrc` file via a `source` directive.
-  2. Existing Vim configurations are safely backed up before linking.
-  3. Vim persistent state (undo, backup, swap) is centralized in `~/.vim/`.
+  2. User can symlink `.ideavimrc` for JetBrains Vim emulation.
+  3. Existing Vim configurations are safely backed up before linking.
+  4. Vim persistent state (undo, backup, swap) is centralized in `~/.vim/`.
 **Plans**: 
-- [Pending] 02-01-PLAN.md — Implement Vim module and shared configuration.
+- [ ] 02-01-PLAN.md — Implement Vim module and shared configuration.
 
 ### Phase 3: Fish & Environment
 **Goal**: Implement Fish support and handle machine-specific environment configurations.
