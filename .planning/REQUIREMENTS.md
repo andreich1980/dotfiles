@@ -29,8 +29,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Documentation
 
-- [ ] **DOC-01**: Comprehensive README with manual installation commands for all tools.
-- [ ] **DOC-02**: Clear usage instructions for the new installation/sync script.
+- [x] **DOC-01**: Comprehensive README with manual installation commands for all tools.
+- [x] **DOC-02**: Clear usage instructions for the new installation/sync script.
 
 ## v2 Requirements
 
@@ -64,8 +64,8 @@ Deferred to future release. Tracked but not in current roadmap.
 | MOD-03 | Phase 3 | Complete |
 | ENV-01 | Phase 3 | Complete |
 | ENV-02 | Phase 3 | Complete |
-| DOC-01 | Phase 4 | Pending |
-| DOC-02 | Phase 4 | Pending |
+| DOC-01 | Phase 4 | Complete |
+| DOC-02 | Phase 4 | Complete |
 
 **Coverage:**
 - v1 requirements: 12 total
