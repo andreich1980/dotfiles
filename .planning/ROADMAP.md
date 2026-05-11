@@ -65,5 +65,5 @@
 |-------|----------------|--------|-----------|
 | 1. Engine & Git Module | 2/2 | Completed | 2026-05-11 |
 | 2. Vim Module | 1/1 | Complete   | 2026-05-11 |
-| 3. Zsh & Environment | 0/1 | In Progress | - |
+| 3. Fish & Environment | 0/1 | In Progress | - |
 | 4. Documentation | 0/0 | Not started | - |
