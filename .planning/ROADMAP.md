@@ -8,7 +8,6 @@
 
 - [ ] **Phase 1: Engine & Git Module** - Core script logic and first tool implementation.
 - [ ] **Phase 2: Vim Module** - Adding Vim configuration support.
-- [ ] **Phase 3: Zsh & Environment** - Zsh support and environment-specific overrides.
 - [ ] **Phase 3: Fish & Environment** - Fish support and environment-specific overrides.
 
 ## Phase Details
