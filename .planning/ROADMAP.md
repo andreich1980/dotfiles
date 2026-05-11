@@ -13,15 +13,15 @@
 ## Phase Details
 
 ### Phase 1: Engine & Git Module
-**Goal**: Establish the core installation engine and use it to manage Git configuration.
+**Goal**: Establish the core installation engine and safely wire up Git configuration via an include directive.
 **Mode**: mvp
 **Depends on**: Nothing
-**Requirements**: ENG-01, ENG-02, ENG-03, ENG-04, ENG-05, MOD-01
+**Requirements**: ENG-01, ENG-02, ENG-03, ENG-04, ENG-05, ENG-06, MOD-01
 **Success Criteria** (what must be TRUE):
-  1. User can run the script to link the Git configuration to the correct home directory path.
-  2. Script automatically backs up existing `.gitconfig` before any changes occur.
-  3. User can preview intended changes using a "dry-run" flag.
-  4. Script is idempotent and handles atomic linking to prevent broken states.
+  1. User can run the script to wire up the Git configuration via an `[include]` in `~/.gitconfig`.
+  2. Original `~/.gitconfig` is backed up to `~/.gitconfig.backup` before any changes occur.
+  3. Script is idempotent: running it multiple times does not duplicate the `include` directive.
+  4. User can preview intended changes (backups and modifications) using a "dry-run" flag.
 **Plans**: TBD
 
 ### Phase 2: Vim Module

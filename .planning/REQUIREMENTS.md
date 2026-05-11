@@ -10,14 +10,15 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Installation Engine
 
 - [ ] **ENG-01**: Script is idempotent (can run multiple times without side effects).
-- [ ] **ENG-02**: Script automatically backs up existing configurations before overwriting/linking.
-- [ ] **ENG-03**: Script uses atomic linking (e.g., tmp link + move) to prevent broken states.
+- [ ] **ENG-02**: Script automatically backs up existing configurations (e.g., `~/.gitconfig` -> `~/.gitconfig.backup`) before modification.
+- [ ] **ENG-03**: Script uses atomic linking or safe appending to prevent broken states.
 - [ ] **ENG-04**: Script checks for required tool dependencies (git, vim, etc.) before proceeding.
 - [ ] **ENG-05**: Script supports a "dry-run" mode to show intended changes.
+- [ ] **ENG-06**: Script checks if an `include` or `source` directive already exists before adding it.
 
 ### Tool Modules
 
-- [ ] **MOD-01**: Git configuration module (links `.gitconfig`).
+- [ ] **MOD-01**: Git configuration module (wires up `git/.gitconfig` via `[include]` in `~/.gitconfig`).
 - [ ] **MOD-02**: Vim configuration module (links `.vimrc`).
 - [ ] **MOD-03**: Fish configuration module (links `config.fish` and handles local overrides).
 
