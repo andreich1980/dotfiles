@@ -46,7 +46,7 @@ fi
 # Dry-run wrapper
 run() {
     if [[ "$DRY_RUN" == true ]]; then
-        echo "[DRY-RUN] $*"
+        echo "  [DRY-RUN] $*"
     else
         "$@"
     fi
