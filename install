@@ -68,11 +68,13 @@ fi
 if [[ -d "$DOTFILES_DIR/modules" ]]; then
     for module in "$DOTFILES_DIR/modules"/*.sh; do
         if [[ -f "$module" ]]; then
-            echo "-> Applying module: $(basename "$module" .sh)"
+            echo
+            echo "📦 Applying module: $(basename "$module" .sh | tr '[:lower:]' '[:upper:]')"
             # shellcheck source=/dev/null
             source "$module"
         fi
     done
 fi
 
-echo "Done!"
+echo
+echo "✨ Done!"
