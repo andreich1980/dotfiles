@@ -68,9 +68,3 @@ function set-theme
         kill -SIGUSR1 $kitty_pid
     end
 end
-
-# --- Local Overrides ---
-# This allows machine-specific paths (like Node versions) to be kept out of the main dotfiles repo.
-if test -f ~/.config/fish/config.local.fish
-    source ~/.config/fish/config.local.fish
-end
